@@ -1,0 +1,25 @@
+package data;
+
+public class Coins extends Thread{
+	private int x,y;
+	private double appear_time,value;
+	
+	public Coins(double appear_time, double value, int x, int y) {
+		
+		this.appear_time = appear_time;
+		this.value = value;
+		this.x = x;
+		this.y = y;
+	}
+	public void run(){
+		appear();
+		disappear();
+	}
+public void appear(){
+	
+}
+
+public void disappear(){
+	
+}
+}

@@ -1,0 +1,70 @@
+package data;
+
+import helpers.Clock;
+
+
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+import org.newdawn.slick.opengl.Texture;
+
+import static helpers.Artist.*;
+import static org.lwjgl.opengl.GL11.*;
+import static helpers.Clock.*;
+import static helpers.serverHandler.*;
+public class Boot {
+	int[][] map={
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+	};
+	TileGrid grid=new TileGrid();
+	
+	public  void BootGame(){
+	
+		
+		BeginSession();
+		
+		 map=initiate(map);
+		drawMap(map);
+		Display.update();
+		Display.sync(60);	
+			
+		
+	}
+	
+	public void drawMap(int[][] map){
+		grid.drawTileGrid(map);
+
+		//Enemy enemy=new Enemy(QuickLoad("tank"), grid.getTile(10, 10), 64, 64, 20);
+		//Wave wave=new Wave(5, enemy);
+		//Player player=new Player(grid);
+		//while(!Display.isCloseRequested()){
+			Clock.update();
+			//enemy.Update();
+		grid.Draw();
+		Display.update();
+		Display.sync(60);
+	}
+	
+	
+	
+	public void playerHandle(){
+		playerHandling(map);
+		drawMap(map);
+		
+	}
+	
+}

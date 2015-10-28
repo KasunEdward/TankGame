@@ -1,0 +1,68 @@
+package data;
+
+import helpers.Clock;
+
+
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+import org.newdawn.slick.opengl.Texture;
+
+import static helpers.Artist.*;
+import static org.lwjgl.opengl.GL11.*;
+import static helpers.Clock.*;
+import static helpers.serverHandler.*;
+public class Boot {
+	public static int[][] map={
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+	};
+	
+	Boot(){
+
+		BeginSession();
+	}
+	
+	
+	public  void BootGame(){
+	
+		
+		
+		initiate();
+		new Draw().start();
+		
+		
+	}
+	
+	
+	
+	
+	
+	public void playerHandle(){
+		playerHandling();
+		new Draw().start();
+		
+	}
+	public void coinHandle(){
+		coinHandling();
+		new Draw().start();
+	}
+	public void lifeHandle(){
+		lifeHandling();
+		new Draw().start();
+	}
+	
+}

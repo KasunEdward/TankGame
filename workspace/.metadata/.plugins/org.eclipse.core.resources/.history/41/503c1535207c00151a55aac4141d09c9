@@ -1,0 +1,36 @@
+package data;
+
+import helpers.Clock;
+
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+import org.newdawn.slick.opengl.Texture;
+
+import static helpers.Artist.*;
+import static org.lwjgl.opengl.GL11.*;
+import static helpers.Clock.*;
+import static helpers.serverHandler.*;
+public class Boot {
+
+	public  void BootGame(){
+		
+		BeginSession();
+		initiate();
+		//String[] brick_cordinates={"0,0","0,1","0,2","14,19"};
+	
+		//.update();
+		//enemy.Draw();
+		//player.update();
+		
+		Display.update();
+		Display.sync(60);
+			//}
+		
+	}
+	
+	
+	
+	
+	
+}

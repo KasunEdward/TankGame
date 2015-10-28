@@ -1,0 +1,21 @@
+package data;
+
+import org.lwjgl.opengl.Display;
+import data.Boot;
+
+public class Draw extends Thread {
+	
+	
+	
+
+	public void run(){
+		TileGrid grid=new TileGrid(Boot.map);
+
+		while(!Display.isCloseRequested()){
+		grid.Draw();
+		Display.update();
+		Display.sync(60);
+		}
+	}
+	
+}

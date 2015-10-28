@@ -1,0 +1,95 @@
+package data;
+
+import helpers.Clock;
+
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+import org.newdawn.slick.opengl.Texture;
+
+import static helpers.Artist.*;
+import static org.lwjgl.opengl.GL11.*;
+import static helpers.Clock.*;
+public class Boot {
+
+	public  void BootGame(){
+		
+		BeginSession();
+		//String[] brick_cordinates={"0,0","0,1","0,2","14,19"};
+		String[] parse;
+		String delim="[,]";
+		int x_cor,y_cor;
+		
+		
+		int[][] map={
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+		};
+		
+		for(int i=0;i<Client.brick_cordinates.length;++i){
+			parse=Client.brick_cordinates[i].split(delim);
+			x_cor=Integer.valueOf(parse[0]);
+			y_cor=Integer.valueOf(parse[1]);
+			map[x_cor][y_cor]=1;
+			
+			
+		}
+		for(int i=0;i<Client.stone_cordinates.length;++i){
+			parse=Client.stone_cordinates[i].split(delim);
+			x_cor=Integer.valueOf(parse[0]);
+			y_cor=Integer.valueOf(parse[1]);
+			map[x_cor][y_cor]=3;
+			
+		}
+		
+		for(int i=0;i<Client.water_cordinates.length;++i){
+			parse=Client.water_cordinates[i].split(delim);
+			x_cor=Integer.valueOf(parse[0]);
+			//this part added because # mark at the end of last water coordinates
+			if(i==Client.water_cordinates.length-1){
+				String y=parse[1].substring(0, parse[1].length());
+				y_cor=Integer.valueOf(y);
+					
+			}
+			else{
+			y_cor=Integer.valueOf(parse[1]);
+			
+			}
+			map[x_cor][y_cor]=2;
+		}
+		
+		TileGrid grid=new TileGrid(map);
+		
+		Enemy enemy=new Enemy(QuickLoad("tank"), grid.getTile(10, 10), 64, 64, 20);
+		Wave wave=new Wave(5, enemy);
+		Player player=new Player(grid);
+		//while(!Display.isCloseRequested()){
+			Clock.update();
+			enemy.Update();
+		grid.Draw();
+		//.update();
+		//enemy.Draw();
+		//player.update();
+		
+		Display.update();
+		Display.sync(60);
+			//}
+		
+	}
+	
+	
+	
+}

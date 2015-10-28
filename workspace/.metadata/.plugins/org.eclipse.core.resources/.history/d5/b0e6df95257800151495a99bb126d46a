@@ -1,0 +1,38 @@
+package data;
+
+import org.newdawn.slick.opengl.Texture;
+import static helpers.Artist.*;
+import static helpers.Clock.*;
+
+public class Enemy {
+
+	private float x,y;
+	private int width,height,speed;
+	private Texture texture;
+	private Tile starttile;
+	private boolean first=true;
+	public Enemy(Texture texture, Tile starttile,int width, int height,int speed) {
+		super();
+		this.width = width;
+		this.height = height;
+		this.x=starttile.getX();
+		this.y=starttile.getY();
+		this.texture = texture;
+		this.starttile = starttile;
+		this.speed=speed;
+	}
+	public void Update(){
+		if(first)
+			first=false;
+		else
+			x+=Delta()*speed;
+	}
+	
+	
+	public void Draw() {
+	 drawQuadTex(texture,x,y,width,height);
+		 
+	 }
+	
+	
+}
